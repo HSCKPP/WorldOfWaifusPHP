@@ -125,7 +125,13 @@ $ada =$_GET['ada'];?>
 
 
 <center><p>Actividades de Aprendizaje</p></center>
+<?php 
+if($ada>0){?>
 <center><p>ADA <?=$ada?></p></center>
+<?php }
+else{?>
+<center><p>Pagina Principal</p></center>
+<?php } ?>
 <center><p>Peniche Pacheco Cristhian Kevin</p></center>
 <center><p>Facultad de Matemáticas</p></center>
 <center><p>kevin.peniche@gmail.com</p></center>
