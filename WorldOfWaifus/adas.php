@@ -12,7 +12,9 @@ include_once('code/config.php');
 
         <?php 
 echo propiedad();
+if($ada>0){
             include('ADAs/ada'.$ada.'.php');
+}
         ?>
     </div>
 <?= pie()?>

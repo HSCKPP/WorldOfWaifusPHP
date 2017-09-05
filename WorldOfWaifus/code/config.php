@@ -1,6 +1,7 @@
 <?php
+require_once('code/Starter.php');
+require_once('code/Clase.php');
 function headerPage(){?>
-{
  <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -36,7 +37,14 @@ function headerPage(){?>
   </head>
 
 <?php }
-function menu(){?>
+function menu(){
+
+
+$case = $_GET['case'];
+$var = new Clase();
+$ada =$_GET['ada'];
+if($ada==""){$ada=-1; }
+?>
 
   <div class="container" style="padding-top: 1em;">
      <nav class="navbar navbar-default navbar-fixed-top">
@@ -49,7 +57,7 @@ function menu(){?>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.php">
+          <a class="navbar-brand" href="adas.php">
              <img src="cursologo.gif" alt="Bootstrap" height="32">
           </a>
         </div>
@@ -58,15 +66,15 @@ function menu(){?>
             otro elemento que se pueda ocultar al minimizar la barra -->
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="index.php">Home</a></li>
+            <li class="active"><a href="adas.php">Home</a></li>
             <li class="dropdown">
                <a href="#" class="dropdown-toggle" data-toggle="dropdown">PHP<b class="caret"></b>
                </a>
                
                <ul class="dropdown-menu">
-                 <li><a href="index.php?case=php">PHP</a></li>
+                 <li><a href="adas.php?case=php">PHP</a></li>
                  
-                 <li><a href="index.php?case=clase">Class</a></li>
+                 <li><a href="adas.php?case=clase">Class</a></li>
                  <li><a href="#">Acción #3</a></li>
                  <li class="divider"></li>
                  <li><a href="#">Acción #4</a></li>
@@ -75,8 +83,8 @@ function menu(){?>
                </ul>
             </li>
  
-            <li><a href="index.php?case=bootstrap">Bootstrap</a></li>
-            <li><a href="index.php?case=contact">Contact</a></li>
+            <li><a href="adas.php?case=bootstrap">Bootstrap</a></li>
+            <li><a href="adas.php?case=contact">Contact</a></li>
           </ul>
           <form class="navbar-form navbar-left" role="search">
              <div class="form-group">
@@ -92,6 +100,7 @@ function menu(){?>
                ADA's<b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
+
                <li><a href="adas.php?ada=1">ADA #1</a></li>
                <li><a href="adas.php?ada=2">ADA #2</a></li>
                <li><a href="adas.php?ada=3">ADA #3</a></li>
@@ -105,7 +114,45 @@ function menu(){?>
 
      </nav>
   </div>
-<?php } 
+<?php if($ada<0){ ?>
+  <div class="container">  
+     <div class="starter-template">
+        <?php echo ($case == '')  ?  miheader() : '' ?> 
+     </div>
+  
+  
+  <?php
+     switch($case) {
+       case 'about':
+          echo about();
+          break;
+             
+       case 'contact':
+          echo contact();
+          break;
+
+       case 'php':
+          echo php();
+          break;
+
+       case 'clase':
+          echo  '<h2>Programación Orientada a Objetos:</h2>';
+          
+          echo $var->phpConClase();
+          break;
+
+       case 'bootstrap':
+          echo $var::grid();
+          break;
+          
+       default:
+          echo $var::home();
+     }
+  ?>
+
+  </div>
+<?php }
+}
 function pie(){ ?>
   
     <!-- Bootstrap core JavaScript
@@ -120,10 +167,10 @@ function pie(){ ?>
 </html>
 <?php }
 function propiedad(){
+$ada =$_GET['ada'];
 
-$ada =$_GET['ada'];?>
 
-
+if($ada>-1){?>
 <center><p>Actividades de Aprendizaje</p></center>
 <?php 
 if($ada>0){?>
@@ -135,6 +182,6 @@ else{?>
 <center><p>Peniche Pacheco Cristhian Kevin</p></center>
 <center><p>Facultad de Matemáticas</p></center>
 <center><p>kevin.peniche@gmail.com</p></center>
-<?php }
+<?php }}
 
 ?>
